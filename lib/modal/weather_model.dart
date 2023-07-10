@@ -1,27 +1,33 @@
 class Weather {
-   final String cityName;
-  final String description;
-  final double temp;
-  final double wind;
-  final int humidity;
- final  double feels_like;
-  final int pressure;
-  final String icon;
+  String? cityName;
+  String? description;
+  double? temp;
+  double? wind;
+  int? humidity;
 
-  
-  Weather({required this.cityName, required this.temp, required this.wind, required this.humidity, required this.feels_like,
-      required this.pressure, required this.icon, required this.description,} );
+  double? feelsLike;
+  int? pressure;
+  String? icon;
 
- factory Weather.fromJson(Map<String, dynamic> json) {
-    return Weather(
-    cityName : json["name"],
-    description :json["weather"][0]["description"],
-    temp :json["main"]["temp"],
-    wind : json["main"]["wind_speed"],
-    humidity : json["main"]["humidity"],
-    feels_like : json["main"]["feels_like"],
-    pressure : json["main"]["pressure"],
-    icon : json["weather"][0]["icon"],
-    );
+  Weather({
+    this.cityName,
+    this.temp,
+    this.wind,
+    this.humidity,
+    this.feelsLike,
+    this.pressure,
+    this.icon,
+    this.description,
+  });
+
+  Weather.fromJson(Map<String, dynamic> json) {
+    cityName = json["name"];
+    description = json["weather"][0]["description"];
+    temp = json["main"]["temp"] ;
+    wind = json["wind"]["speed"];
+    humidity = json["main"]["humidity"];
+    feelsLike = json["main"]["feels_like"] ;
+    pressure = json["main"]["pressure"];
+    icon = json["weather"][0]["icon"];
   }
 }
