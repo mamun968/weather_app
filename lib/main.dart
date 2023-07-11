@@ -7,6 +7,8 @@ import 'package:weather_app/modal/weather_model.dart';
 import 'package:weather_app/views/additional_information.dart';
 import 'package:weather_app/views/current_weather.dart';
 
+import 'modal/iconData.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -71,10 +73,12 @@ class _HomePageState extends State<HomePage> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.sunny_snowing,
-                    size: 60,
-                  ),
+                  if (data!.icon != null)
+                    Icon(
+                      getIconData(data!.icon!),
+                      size: 50,
+                      color: Colors.amber,
+                    ),
                   currentWeather("${data!.temp!.toStringAsFixed(0)}\u00B0C",
                       "${data!.cityName}"),
                   const SizedBox(
